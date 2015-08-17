@@ -1,0 +1,17 @@
+{
+  "name": "survivejs-kanban",
+  "version": "1.0.0",
+  "description": "survivejs.com - developing with webpack",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-plugin": "^1.6.1",
+    "node-libs-browser": "^0.5.2",
+    "webpack": "^1.11.0",
+    "webpack-dev-server": "^1.10.1"
+  }
+}
