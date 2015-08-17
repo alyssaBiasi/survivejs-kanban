@@ -6,7 +6,7 @@ var HtmlwebpackPlugin = require('html-webpack-plugin');
 var TARGET = process.env.npm_lifecycle_event;
 var ROOT_PATH = path.resolve(__dirname);
 
-var common = {
+var commonConfig = {
   entry: path.resolve(ROOT_PATH, 'app/main'),
   output: {
     path: path.resolve(ROOT_PATH, 'public'),
@@ -22,24 +22,25 @@ var common = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlwebpackPlugin({ title: 'Kanban App' })
   ]
 };
 
+var startConfig = {
+  devtool: 'eval-source-map',
+  devServer: {
+    colors: true,
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    progress: true
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
+};
+
 if(TARGET === 'start' || !TARGET) {
-  module.exports = merge(common, {
-    devtool: 'eval-source-map',
-    devServer: {
-      colors: true,
-      historyApiFallback: true,
-      hot: true,
-      inline: true,
-      progress: true
-    },
-    plugins: [
-      new webpack.HotModuleReplacementPlugin()
-    ]
-  });
+  module.exports = merge(commonConfig, startConfig);
 }
 
