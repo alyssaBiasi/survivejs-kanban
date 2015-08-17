@@ -22,7 +22,11 @@ var commonConfig = {
     ]
   },
   plugins: [
-    new HtmlwebpackPlugin({ title: 'Kanban App' })
+    new HtmlwebpackPlugin({
+      title: 'survivejs - Kanban App',
+      template: 'src/index.html',
+      inject: 'body'
+    })
   ]
 };
 
