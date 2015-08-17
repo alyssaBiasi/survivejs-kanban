@@ -15,9 +15,9 @@ var commonConfig = {
   module: {
     loaders: [
       {
-        test: /\.css$/,
-        loaders: ['style', 'css'],
-        include: path.resolve(ROOT_PATH, 'src/css')
+        test: /\.scss$/,
+        loaders: ['style', 'css', 'sass'],
+        include: path.resolve(ROOT_PATH, 'src/scss')
       }
     ]
   },

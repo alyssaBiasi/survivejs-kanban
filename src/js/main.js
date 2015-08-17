@@ -1,4 +1,4 @@
-require('../css/main.css');
+require('../scss/main.scss');
 
 var component = require('./component');
 var app = document.createElement('div');
