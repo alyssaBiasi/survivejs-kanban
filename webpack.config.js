@@ -39,7 +39,8 @@ var startConfig = {
     historyApiFallback: true,
     hot: true,
     inline: true,
-    progress: true
+    progress: true,
+    port: 9100
   },
   module: {
     loaders: [
