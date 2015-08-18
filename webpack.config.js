@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var merge = require('webpack-merge');
 var HtmlwebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var TARGET = process.env.npm_lifecycle_event;
 var ROOT_PATH = path.resolve(__dirname);
@@ -15,13 +16,14 @@ var commonConfig = {
   module: {
     loaders: [
       {
-        test: /\.scss$/,
-        loaders: ['style', 'css', 'sass'],
+        test: /\.scss|css$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader'),
         include: path.resolve(ROOT_PATH, 'src/scss')
       }
     ]
   },
   plugins: [
+    new ExtractTextPlugin('main.css'),
     new HtmlwebpackPlugin({
       title: 'survivejs - Kanban App',
       template: 'src/index.html',
