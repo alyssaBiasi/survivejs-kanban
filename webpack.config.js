@@ -41,6 +41,15 @@ var startConfig = {
     inline: true,
     progress: true
   },
+  module: {
+    loaders: [
+      {
+        text: /\.js$/,
+        loaders: ['babel'],
+        include: path.resolve(ROOT_PATH, 'src/js')
+      }
+    ]
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ]
