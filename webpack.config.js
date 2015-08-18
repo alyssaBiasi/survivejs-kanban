@@ -1,14 +1,14 @@
 var path = require('path');
 var webpack = require('webpack');
 var merge = require('webpack-merge');
-var HtmlwebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlwebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var TARGET = process.env.npm_lifecycle_event;
-var ROOT_PATH = path.resolve(__dirname);
+const TARGET = process.env.npm_lifecycle_event;
+const ROOT_PATH = path.resolve(__dirname);
 
 var commonConfig = {
-  entry: path.resolve(ROOT_PATH, 'src/js/main'),
+  entry: path.resolve(ROOT_PATH, 'src/js/main.jsx'),
   output: {
     path: path.resolve(ROOT_PATH, 'public'),
     filename: 'bundle.js'
@@ -44,7 +44,7 @@ var startConfig = {
   module: {
     loaders: [
       {
-        text: /\.js$/,
+        text: /\.jsx?$/,
         loaders: ['babel'],
         include: path.resolve(ROOT_PATH, 'src/js')
       }
