@@ -46,7 +46,7 @@ var startConfig = {
     loaders: [
       {
         text: /\.jsx?$/,
-        loaders: ['babel'],
+        loaders: ['react-hot', 'babel'],
         include: path.resolve(ROOT_PATH, 'src/js')
       }
     ]
