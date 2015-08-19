@@ -10,5 +10,4 @@ function main() {
   document.body.appendChild(app);
 
   React.render(<App />, app);
-};
-
+}
