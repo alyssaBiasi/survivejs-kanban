@@ -43,7 +43,7 @@ class Note extends React.Component {
   }
 
   renderDelete() {
-    return <button onClick={this.props.onDelete}> X </button>;
+    return <button className='delete' onClick={this.props.onDelete}> X </button>;
   }
 
   edit() {
