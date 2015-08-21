@@ -1,6 +1,6 @@
 import React from 'react';
 import uuid from 'node-uuid';
-import Note from './Note.jsx';
+import Notes from './Notes.jsx';
 
 const notes = [
   {
@@ -21,16 +21,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <ul>{ notes.map(this.renderNote) }</ul>
+        <h1>To Do:</h1>
+        <Notes items={ notes} />
       </div>
-    );
-  }
-
-  renderNote(note) {
-    return (
-      <li key={ `note${note.id}` }>
-        <Note task={ note.task } />
-      </li>
     );
   }
 }
