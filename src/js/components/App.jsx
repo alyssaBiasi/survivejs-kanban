@@ -20,8 +20,22 @@ const notes = [
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { notes: notes }
+    this.state = { notes: notes };
     this.addNote = this.addNote.bind(this);
+    this.editNote = this.editNote.bind(this);
+    this.findNote = this.findNote.bind(this);
+  }
+
+  render() {
+    const items = this.state.notes;
+
+    return (
+      <div>
+        <h1>To Do:</h1>
+        <Notes items={items} onEdit={this.editNote} />
+        <button onClick={this.addNote}> + </button>
+      </div>
+    );
   }
 
   addNote() {
@@ -37,16 +51,8 @@ class App extends React.Component {
     this.setState(newData);
   }
 
-  render() {
-    const items = this.state.notes;
+  editNote(id, task) {
 
-    return (
-      <div>
-        <h1>To Do:</h1>
-        <Notes items={items} />
-        <button onClick={this.addNote}> + </button>
-      </div>
-    );
   }
 }
 

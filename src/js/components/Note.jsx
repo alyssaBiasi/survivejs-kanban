@@ -49,6 +49,8 @@ class Note extends React.Component {
   }
 
   finishEdit(e) {
+    this.props.onEdit(e.target.value);
+
     this.setState({
       editing: false
     });
