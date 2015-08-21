@@ -6,6 +6,7 @@ class Note extends React.Component {
     this.edit = this.edit.bind(this);
     this.renderTask = this.renderTask.bind(this);
     this.renderEdit = this.renderEdit.bind(this);
+    this.renderDelete = this.renderDelete.bind(this);
     this.checkEnter = this.checkEnter.bind(this);
     this.finishEdit = this.finishEdit.bind(this);
 
@@ -24,6 +25,15 @@ class Note extends React.Component {
     );
   }
 
+  renderTask() {
+    return (
+      <div onClick={this.edit}>
+        <span>{ this.props.task }</span>
+        { this.props.onDelete ? this.renderDelete() : null }
+      </div>
+    );
+  }
+
   renderEdit() {
     return <input type='text'
                   autoFocus={true}
@@ -32,8 +42,8 @@ class Note extends React.Component {
                   onBlur={this.finishEdit} />;
   }
 
-  renderTask() {
-    return <div onClick={this.edit}>{ this.props.task }</div>;
+  renderDelete() {
+    return <button onClick={this.props.onDelete}> X </button>;
   }
 
   edit() {

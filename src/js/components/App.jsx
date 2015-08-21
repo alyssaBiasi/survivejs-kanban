@@ -22,6 +22,7 @@ class App extends React.Component {
     super(props);
     this.state = { notes: notes };
     this.addNote = this.addNote.bind(this);
+    this.deleteNote = this.deleteNote.bind(this);
     this.editNote = this.editNote.bind(this);
     this.findNote = this.findNote.bind(this);
   }
@@ -32,7 +33,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>To Do:</h1>
-        <Notes items={items} onEdit={this.editNote} />
+        <Notes items={items} onEdit={this.editNote} onDelete={this.deleteNote} />
         <button onClick={this.addNote}> + </button>
       </div>
     );
@@ -49,6 +50,18 @@ class App extends React.Component {
     };
 
     this.setState(newData);
+  }
+
+  deleteNote(id) {
+    let notes = this.state.notes;
+    const index = this.findNote(id);
+
+    if(index < 0) {
+      return;
+    }
+
+    notes = notes.slice(0, index).concat(notes.slice(index+1));
+    this.setState({notes});
   }
 
   editNote(id, task) {

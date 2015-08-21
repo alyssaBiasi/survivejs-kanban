@@ -15,10 +15,11 @@ class Notes extends React.Component {
 
   renderNote(note) {
     const editCallback = this.props.onEdit.bind(null, note.id);
+    const deleteCallback = this.props.onDelete.bind(null, note.id);
 
     return (
       <li key={`note${note.id}`}>
-        <Note task={note.task} onEdit={editCallback}/>
+        <Note task={note.task} onEdit={editCallback} onDelete={deleteCallback}/>
       </li>
     );
   }
