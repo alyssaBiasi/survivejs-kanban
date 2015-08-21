@@ -52,7 +52,20 @@ class App extends React.Component {
   }
 
   editNote(id, task) {
+    let notes = this.state.notes;
+    const index = this.findNote(id);
 
+    if(index < 0) {
+      return;
+    }
+
+    notes[index].task = task;
+    this.setState({notes});
+  }
+
+  findNote(id) {
+    let notes = this.state.notes;
+    return notes.findIndex((n) => n.id == id);
   }
 }
 
