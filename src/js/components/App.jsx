@@ -18,11 +18,33 @@ const notes = [
 ];
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { notes: notes }
+    this.addNote = this.addNote.bind(this);
+  }
+
+  addNote() {
+    var newNote = {
+      id: uuid.v4(),
+      task: 'New note'
+    };
+
+    var newData = {
+      notes: this.state.notes.concat([newNote])
+    };
+
+    this.setState(newData);
+  }
+
   render() {
+    const items = this.state.notes;
+
     return (
       <div>
         <h1>To Do:</h1>
-        <Notes items={ notes} />
+        <Notes items={items} />
+        <button onClick={this.addNote}> + </button>
       </div>
     );
   }
