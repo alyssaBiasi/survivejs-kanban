@@ -1,6 +1,6 @@
 var path = require('path');
 
-const ROOT_PATH = path.resolve(__dirname);
+const ROOT_PATH = path.resolve(__dirname) + '/../';
 
 module.exports = function(config) {
   config.set({
@@ -15,13 +15,13 @@ module.exports = function(config) {
     reporters: ['dots'],
 
     // list of files / patterns to load in the browser
-    files: [ 'spec/**/*-spec.js' ],
+    files: [ '../spec/**/*-spec.js' ],
     exclude: [ ],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      './spec/**/*-spec.js': ['webpack']
+      '../spec/**/*-spec.js': ['webpack']
     },
     webpack: {
       module: {

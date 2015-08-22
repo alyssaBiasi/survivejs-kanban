@@ -5,7 +5,7 @@ const HtmlwebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const TARGET = process.env.npm_lifecycle_event;
-const ROOT_PATH = path.resolve(__dirname);
+const ROOT_PATH = path.resolve(__dirname) + '/../';
 
 var commonConfig = {
   entry: path.resolve(ROOT_PATH, 'src/js/main.jsx'),
