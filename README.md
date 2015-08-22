@@ -12,3 +12,9 @@ Run
 ---
 
 `$ npm start`
+
+Specs
+-----
+
+`$ npm run test`
+
