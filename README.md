@@ -16,5 +16,11 @@ Run
 Specs
 -----
 
-`$ npm run test`
+Single run:
+
+    $ npm run test
+
+Spec watching:
+
+    $ npm run testWatch
 

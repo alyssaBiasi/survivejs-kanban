@@ -10,12 +10,15 @@ module.exports = function(config) {
     colors: true,
     autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: false,
+    singleRun: true,
     logLevel: config.LOG_INFO,
     reporters: ['dots'],
 
     // list of files / patterns to load in the browser
-    files: [ '../spec/**/*-spec.js' ],
+    files: [
+        { pattern: '../src/js/**/*', included: false },
+        { pattern: '../spec/**/*-spec.js', included: true }
+    ],
     exclude: [ ],
 
     // preprocess matching files before serving them to the browser

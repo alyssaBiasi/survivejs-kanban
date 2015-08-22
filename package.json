@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --config config/webpack.js",
     "test": "karma start config/karma.js",
+    "testWatch": "karma start config/karma.js --no-single-run",
     "lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore"
   },
   "author": "Alyssa Biasi",
