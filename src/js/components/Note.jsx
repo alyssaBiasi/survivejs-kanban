@@ -35,7 +35,7 @@ class Note extends React.Component {
   }
 
   renderEdit() {
-    return <input type='text'
+    return <input className='note__edit' type='text'
                   autoFocus={true}
                   defaultValue={this.props.task}
                   onKeyPress={this.checkEnter}
