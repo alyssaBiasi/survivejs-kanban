@@ -4,13 +4,14 @@ var ReactTestUtils = React.addons.TestUtils;
 
 describe('Note', () => {
   var Page, note;
+  var onDelete, onEdit;
   var task = 'AB';
-  var onDelete;
 
   beforeEach(() => {
-    onDelete = jasmine.createSpy();
+    onDelete = jasmine.createSpy('onDelete');
+    onEdit = jasmine.createSpy('onEdit');
 
-    var n = <Note task={task} onDelete={onDelete} />;
+    var n = <Note task={task} onDelete={onDelete} onEdit={onEdit} />;
     Page = ReactTestUtils.renderIntoDocument(n);
     note = ReactTestUtils.findRenderedComponentWithType(Page, Note);
   });
@@ -38,13 +39,37 @@ describe('Note', () => {
   });
 
   describe('editing', () => {
+    var inputField;
+
     beforeEach(() => {
       note.setState({editing: true});
+      inputField = ReactTestUtils.findRenderedDOMComponentWithClass(note, 'note__edit');
     });
 
     it('swaps to render editing', () => {
-      var input = ReactTestUtils.findRenderedDOMComponentWithClass(note, 'note__edit');
-      expect(input).toBeDefined();
+      expect(inputField).toBeDefined();
+    });
+
+    describe('finish editing', () => {
+      describe('on blur', () => {
+        beforeEach(() => {
+          ReactTestUtils.Simulate.blur(inputField);
+        });
+
+        it('calls the edit callback', () => {
+          expect(onEdit).toHaveBeenCalled();
+        });
+      });
+
+      describe('on enter key', () => {
+        beforeEach(() => {
+          ReactTestUtils.Simulate.keyPress(inputField, {key: 'Enter'});
+        });
+
+        it('calls the edit callback', () => {
+          expect(onEdit).toHaveBeenCalled();
+        });
+      });
     });
   });
 
@@ -54,7 +79,7 @@ describe('Note', () => {
       ReactTestUtils.Simulate.click(button);
     });
 
-    it('delete callback called', () => {
+    it('calls the delete callback', () => {
       expect(onDelete).toHaveBeenCalled();
     });
   });
