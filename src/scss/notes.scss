@@ -12,6 +12,10 @@
   background-color: #fdfdfd;
   box-shadow: 0 0 0.3em .03em rgba(0,0,0,.3);
 
+  &-task {
+    display: inline-block;
+  }
+
   &:hover {
     box-shadow: 0 0 0.3em .03em rgba(0,0,0,.7);
     transition: .6s;

@@ -28,7 +28,7 @@ class Note extends React.Component {
   renderTask() {
     return (
       <div onClick={this.edit}>
-        <span>{ this.props.task }</span>
+        <span className='note-task'>{ this.props.task }</span>
         { this.props.onDelete ? this.renderDelete() : null }
       </div>
     );

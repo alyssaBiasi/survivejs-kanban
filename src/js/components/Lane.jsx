@@ -10,9 +10,13 @@ export default class Lane extends React.Component {
     const items = () => NoteStore.getState().notes;
 
     return (
-      <div>
-        <div className='lane-name'>{ name }</div>
-        <button onClick={this.addNote}> + </button>
+      <div {...props}>
+        <div className='lane-header'>
+          <div className='lane-name'>{ name }</div>
+          <div className='lane-add-note'>
+            <button onClick={this.addNote}> + </button>
+          </div>
+        </div>
         <AltContainer stores={[NoteStore]}
                       inject={{items: items}} >
           <Notes onEdit={this.editNote} onDelete={this.deleteNote} />
