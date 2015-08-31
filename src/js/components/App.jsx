@@ -2,24 +2,13 @@ import React from 'react';
 import Notes from './Notes.jsx';
 import NoteActions from '../actions/NoteActions';
 import NoteStore from '../stores/NoteStore';
+import connect from '../decorators/connect';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = NoteStore.getState();
-    this.storeChanged = this.storeChanged.bind(this);
-  }
-
-  componentDidMount() {
-    NoteStore.listen(this.storeChanged);
-  }
-
-  componentWillUnmount() {
-    NoteStore.unlisten(this.storeChanged);
-  }
+@connect(NoteStore)
+export default class App extends React.Component {
 
   render() {
-    const items = this.state.notes;
+    const items = this.props.notes || [];
 
     return (
       <div>
@@ -28,10 +17,6 @@ class App extends React.Component {
         <button onClick={this.addNote}> + </button>
       </div>
     );
-  }
-
-  storeChanged(state) {
-    this.setState(state);
   }
 
   addNote() {
@@ -46,6 +31,4 @@ class App extends React.Component {
     NoteActions.update({ id, task });
   }
 }
-
-module.exports = App;
 
