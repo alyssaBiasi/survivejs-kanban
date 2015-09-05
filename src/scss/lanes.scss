@@ -1,5 +1,5 @@
 
-.add-lane, .lane-add-note button {
+.add-lane, .lane__add-note button {
   background-color: #fdfdfd;
   border: 1px solid #ccc;
 }
@@ -15,7 +15,7 @@
   min-width: 10em;
   vertical-align: top;
 
-  &-header {
+  &__header {
     overflow: auto;
     padding: 1em;
 
@@ -26,11 +26,11 @@
     border-top-right-radius: 0.5em;
   }
 
-  &-name {
+  &__name {
     float: left;
   }
 
-  &-add-note {
+  &__add-note {
     float: right;
     margin-left: 0.5em;
   }
