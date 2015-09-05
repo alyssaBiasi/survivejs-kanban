@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var merge = require('webpack-merge');
+var Clean = require('clean-webpack-plugin');
 var pkg = require('../package.json');
 const HtmlwebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -77,6 +78,7 @@ var buildConfig = {
     ]
   },
   plugins: [
+    new Clean(['public']),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.[chunkhash].js'),
     new webpack.DefinePlugin({
       'process.env': {
