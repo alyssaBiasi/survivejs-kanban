@@ -105,6 +105,9 @@ class LaneStore {
           [targetNoteIndex, 0, sourceID]
         ]
       });
+    } else {
+      sourceLane.notes.splice(sourceNoteIndex, 1);
+      targetLane.notes.splice(targetNoteIndex, 0, sourceID);
     }
 
     this.setState({lanes});

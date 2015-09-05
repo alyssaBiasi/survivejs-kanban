@@ -140,6 +140,52 @@ describe('LaneStore', () => {
         expect(_.pluck(lanes, 'notes')).toEqual([[fakeNote2, fakeNote1]]);
       });
     });
+
+    describe('between lanes', () => {
+      beforeEach(() => {
+        alt.dispatcher.dispatch({
+          action: LaneActions.CREATE,
+          data: { }
+        });
+
+        var lane1 = LaneStore.getState().lanes[0].id;
+        var lane2 = LaneStore.getState().lanes[1].id;
+
+        alt.dispatcher.dispatch({
+          action: LaneActions.ATTACH_TO_LANE,
+          data: {
+            laneID: lane1,
+            noteID: fakeNote1
+          }
+        });
+
+        alt.dispatcher.dispatch({
+          action: LaneActions.ATTACH_TO_LANE,
+          data: {
+            laneID: lane2,
+            noteID: fakeNote2
+          }
+        });
+
+        alt.dispatcher.dispatch({
+          action: LaneActions.MOVE,
+          data: {
+            sourceNote: { id: fakeNote1 },
+            targetNote: { id: fakeNote2 }
+          }
+        });
+      });
+
+      it('removes the note from lane 1', () => {
+        var lane = LaneStore.getState().lanes[0];
+        expect(lane.notes).toEqual([]);
+      });
+
+      it('moves the note to lane 2', () => {
+        var lane = LaneStore.getState().lanes[1];
+        expect(lane.notes).toEqual([fakeNote1, fakeNote2]);
+      });
+    });
   });
 });
 
