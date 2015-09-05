@@ -66,7 +66,17 @@ var buildConfig = {
         include: path.resolve(ROOT_PATH, 'src/js')
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false }
+    })
+  ]
 };
 
 if(TARGET === 'start' || !TARGET) {
