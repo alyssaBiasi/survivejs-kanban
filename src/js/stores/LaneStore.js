@@ -59,12 +59,29 @@ class LaneStore {
       return;
     }
 
+    this.removeNote(noteID);
     const lane = lanes[index];
 
     if(lane.notes.indexOf(noteID) === -1) {
       lane.notes.push(noteID);
       this.setState({ lanes });
     }
+  }
+
+  removeNote(noteID) {
+    const lanes = this.lanes;
+    const removeLane = lanes.filter((lane) => {
+      return lane.notes.indexOf(noteID) >= 0;
+    })[0];
+
+    if(!removeLane) {
+      return;
+    }
+
+    const removeNoteIndex = removeLane.notes.indexOf(noteID);
+
+    removeLane.notes = removeLane.notes.slice(0, removeNoteIndex).
+      concat(removeLane.notes.slice(removeNoteIndex + 1));
   }
 
   detachFromLane({ laneID, noteID }) {
