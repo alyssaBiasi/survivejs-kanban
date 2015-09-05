@@ -19,10 +19,13 @@ class Notes extends React.Component {
     const deleteCallback = this.props.onDelete.bind(null, note.id);
 
     return (
-      <Note className='note' data={note} key={`note${note.id}`}>
-        <Editable value={note.task} onEdit={editCallback} onDelete={deleteCallback}/>
+      <Note className='note' data={note} key={`note${note.id}`} onMove={this.onMoveNote} >
+        <Editable value={note.task} onEdit={editCallback} onDelete={deleteCallback} />
       </Note>
     );
+  }
+
+  onMoveNote({ sourceNote, targetNote }) {
   }
 }
 
