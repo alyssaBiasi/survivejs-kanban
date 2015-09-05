@@ -7,6 +7,14 @@ class NoteStore {
   constructor() {
     this.bindActions(NoteActions);
     this.notes = [];
+
+    this.exportPublicMethods({
+      get: this.get.bind(this)
+    });
+  }
+
+  get(ids) {
+    return (ids || []).map((id) => this.notes[this.findNote(id)]);
   }
 
   create(note) {

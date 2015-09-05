@@ -22,6 +22,19 @@ describe('NoteStore', () => {
     expect(_.pluck(notes, 'task')).toEqual([task]);
   });
 
+  describe('get', () => {
+    var id, expectedNote;
+
+    beforeEach(() => {
+      id =  NoteStore.getState().notes[0].id;
+    });
+
+    it('returns the note', () => {
+      expectedNote = { id: id, task: task };
+      expect(NoteStore.get([id])).toEqual([expectedNote]);
+    });
+  });
+
   describe('udpate', () => {
     var newTask = 'Noooooo';
 
