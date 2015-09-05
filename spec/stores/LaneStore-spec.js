@@ -101,5 +101,45 @@ describe('LaneStore', () => {
       expect(_.pluck(lanes, 'notes')).toEqual([[]]);
     });
   });
+
+  describe('move', () => {
+    var fakeNote1 = 'HII';
+    var fakeNote2 = 'HEllooo';
+
+    describe('within same lane', () => {
+      beforeEach(() => {
+        var id = LaneStore.getState().lanes[0].id;
+
+        alt.dispatcher.dispatch({
+          action: LaneActions.ATTACH_TO_LANE,
+          data: {
+            laneID: id,
+            noteID: fakeNote1
+          }
+        });
+
+        alt.dispatcher.dispatch({
+          action: LaneActions.ATTACH_TO_LANE,
+          data: {
+            laneID: id,
+            noteID: fakeNote2
+          }
+        });
+
+        alt.dispatcher.dispatch({
+          action: LaneActions.MOVE,
+          data: {
+            sourceNote: { id: fakeNote1 },
+            targetNote: { id: fakeNote2 }
+          }
+        });
+      });
+
+      it('reorders the notes', () => {
+        var lanes = LaneStore.getState().lanes;
+        expect(_.pluck(lanes, 'notes')).toEqual([[fakeNote2, fakeNote1]]);
+      });
+    });
+  });
 });
 

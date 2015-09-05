@@ -1,4 +1,5 @@
 import React from 'react';
+import LaneActions from '../actions/LaneActions';
 import Editable from './Editable.jsx';
 import Note from './Note.jsx';
 
@@ -19,13 +20,11 @@ class Notes extends React.Component {
     const deleteCallback = this.props.onDelete.bind(null, note.id);
 
     return (
-      <Note className='note' data={note} key={`note${note.id}`} onMove={this.onMoveNote} >
+      <Note className='note' data={note}
+            key={`note${note.id}`} onMove={LaneActions.move} >
         <Editable value={note.task} onEdit={editCallback} onDelete={deleteCallback} />
       </Note>
     );
-  }
-
-  onMoveNote({ sourceNote, targetNote }) {
   }
 }
 

@@ -1,4 +1,5 @@
 import 'array.prototype.findindex';
+import update from 'react/lib/update';
 import uuid from 'node-uuid';
 import alt from '../lib/alt';
 import LaneActions from '../actions/LaneActions';
@@ -82,6 +83,31 @@ class LaneStore {
       lane.notes = notes.slice(0, removeIndex).concat(notes.slice(removeIndex + 1));
       this.setState({ lanes });
     }
+  }
+
+  move({ sourceNote, targetNote }) {
+    const lanes = this.lanes;
+    const sourceID = sourceNote.id;
+    const targetID = targetNote.id;
+    const sourceLane = lanes.filter((lane) => {
+      return lane.notes.indexOf(sourceID) >= 0;
+    })[0];
+    const targetLane = lanes.filter((lane) => {
+      return lane.notes.indexOf(targetID) >= 0;
+    })[0];
+    const sourceNoteIndex = sourceLane.notes.indexOf(sourceID);
+    const targetNoteIndex = targetLane.notes.indexOf(targetID);
+
+    if(sourceLane === targetLane) {
+      sourceLane.notes = update(sourceLane.notes, {
+        $splice: [
+          [sourceNoteIndex, 1],
+          [targetNoteIndex, 0, sourceID]
+        ]
+      });
+    }
+
+    this.setState({lanes});
   }
 
   findLane(id) {
