@@ -3,6 +3,8 @@ var webpack = require('webpack');
 var merge = require('webpack-merge');
 var Clean = require('clean-webpack-plugin');
 var pkg = require('../package.json');
+var pageRenderer = require('../src/js/util/pageRenderer');
+var App = require('../src/js/components/App.jsx');
 const HtmlwebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -87,6 +89,10 @@ var buildConfig = {
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false }
+    }),
+    new HtmlwebpackPlugin({
+      title: 'survivejs - Kanban App',
+      templateContent: pageRenderer(App)
     })
   ]
 };
