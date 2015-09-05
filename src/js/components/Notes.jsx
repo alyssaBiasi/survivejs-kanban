@@ -1,5 +1,6 @@
 import React from 'react';
 import Editable from './Editable.jsx';
+import Note from './Note.jsx';
 
 class Notes extends React.Component {
   constructor(props) {
@@ -18,9 +19,9 @@ class Notes extends React.Component {
     const deleteCallback = this.props.onDelete.bind(null, note.id);
 
     return (
-      <li className='note' key={`note${note.id}`}>
+      <Note className='note' data={note} key={`note${note.id}`}>
         <Editable value={note.task} onEdit={editCallback} onDelete={deleteCallback}/>
-      </li>
+      </Note>
     );
   }
 }
