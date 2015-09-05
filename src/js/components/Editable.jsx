@@ -1,10 +1,10 @@
 import React from 'react';
 
-class Note extends React.Component {
+class Editable extends React.Component {
   constructor(props) {
     super(props);
     this.edit = this.edit.bind(this);
-    this.renderTask = this.renderTask.bind(this);
+    this.renderValue = this.renderValue.bind(this);
     this.renderEdit = this.renderEdit.bind(this);
     this.renderDelete = this.renderDelete.bind(this);
     this.checkEnter = this.checkEnter.bind(this);
@@ -16,19 +16,20 @@ class Note extends React.Component {
   }
 
   render() {
+    const {value, onEdit, ...props} = this.props;
     const editing = this.state.editing;
 
     return (
-      <div>
-        { editing ? this.renderEdit() : this.renderTask() }
+      <div {...props}>
+        { editing ? this.renderEdit() : this.renderValue() }
       </div>
     );
   }
 
-  renderTask() {
+  renderValue() {
     return (
       <div onClick={this.edit}>
-        <span className='note-task'>{ this.props.task }</span>
+        <span className='note__value'>{ this.props.value}</span>
         { this.props.onDelete ? this.renderDelete() : null }
       </div>
     );
@@ -37,7 +38,7 @@ class Note extends React.Component {
   renderEdit() {
     return <input className='note__edit' type='text'
                   autoFocus={true}
-                  defaultValue={this.props.task}
+                  defaultValue={this.props.value}
                   onKeyPress={this.checkEnter}
                   onBlur={this.finishEdit} />;
   }
@@ -67,5 +68,5 @@ class Note extends React.Component {
   }
 }
 
-module.exports = Note;
+module.exports = Editable;
 

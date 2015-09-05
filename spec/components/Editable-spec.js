@@ -1,22 +1,22 @@
 var React = require('react/addons');
-var Note = require('../../src/js/components/Note.jsx');
+var Editable = require('../../src/js/components/Editable.jsx');
 var ReactTestUtils = React.addons.TestUtils;
 
-describe('Note', () => {
+describe('Editable', () => {
   var Page, note;
   var onDelete, onEdit;
-  var task = 'AB';
+  var value = 'AB';
 
   beforeEach(() => {
     onDelete = jasmine.createSpy('onDelete');
     onEdit = jasmine.createSpy('onEdit');
 
-    var n = <Note task={task} onDelete={onDelete} onEdit={onEdit} />;
+    var n = <Editable value={value} onDelete={onDelete} onEdit={onEdit} />;
     Page = ReactTestUtils.renderIntoDocument(n);
-    note = ReactTestUtils.findRenderedComponentWithType(Page, Note);
+    note = ReactTestUtils.findRenderedComponentWithType(Page, Editable);
   });
 
-  it('renders the Note', () => {
+  it('renders the Editable', () => {
     expect(note).toBeDefined();
   });
 
@@ -27,9 +27,9 @@ describe('Note', () => {
 
   describe('no delete callback', () => {
     beforeEach(() => {
-      var n = <Note task={task} />;
+      var n = <Editable value={value} />;
       Page = ReactTestUtils.renderIntoDocument(n);
-      note = ReactTestUtils.findRenderedComponentWithType(Page, Note);
+      note = ReactTestUtils.findRenderedComponentWithType(Page, Editable);
     });
 
     it('does not render the delete button', () => {
