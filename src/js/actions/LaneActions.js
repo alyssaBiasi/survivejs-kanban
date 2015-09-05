@@ -1,4 +1,10 @@
 import alt from '../lib/alt';
 
-module.exports = alt.generateActions('create', 'attachToLane', 'detachFromLane');
+module.exports = alt.generateActions(
+  'create',
+  'update',
+  'delete',
+  'attachToLane',
+  'detachFromLane'
+);
 

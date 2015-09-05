@@ -21,6 +21,40 @@ describe('LaneStore', () => {
     expect(_.pluck(lanes, 'notes')).toEqual([[]]);
   });
 
+  describe('update', () => {
+    var name = 'Helloo';
+
+    beforeEach(() => {
+      var id = LaneStore.getState().lanes[0].id;
+      alt.dispatcher.dispatch({
+        action: LaneActions.UPDATE,
+        data: {
+          id: id,
+          name: name
+        }
+      });
+    });
+
+    it('updates the name', () => {
+      var lanes = LaneStore.getState().lanes;
+      expect(_.pluck(lanes, 'name')).toEqual([name]);
+    });
+  });
+
+  describe('delete', () => {
+    beforeEach(() => {
+      alt.dispatcher.dispatch({
+        action: LaneActions.DELETE,
+        data: LaneStore.getState().lanes[0].id
+      });
+    });
+
+    it('removes the lane', () => {
+      var lanes = LaneStore.getState().lanes;
+      expect(lanes.length).toEqual(0);
+    });
+  });
+
   describe('attachToLane', () => {
     var fakeNote = 'HII';
 
