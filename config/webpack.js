@@ -56,7 +56,22 @@ var startConfig = {
   ]
 };
 
+var buildConfig = {
+  devtool: 'source-map',
+  module: {
+    loaders: [
+      {
+        text: /\.jsx?$/,
+        loaders: ['babel'],
+        include: path.resolve(ROOT_PATH, 'src/js')
+      }
+    ]
+  }
+};
+
 if(TARGET === 'start' || !TARGET) {
   module.exports = merge(commonConfig, startConfig);
+} else if(TARGET === 'build') {
+  module.exports = merge(commonConfig, buildConfig);
 }
 
