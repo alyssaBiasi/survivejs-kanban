@@ -30,8 +30,7 @@ var commonConfig = {
     new ExtractTextPlugin('main.css'),
     new HtmlwebpackPlugin({
       title: 'survivejs - Kanban App',
-      template: 'src/index.html',
-      inject: 'body'
+      template: 'src/index.html'
     })
   ]
 };
