@@ -3,6 +3,8 @@ survivejs - Kanban App
 
 Kanban App from http://survivejs.com/webpack_react/introduction/
 
+http://static.abiasi.net/survivejs-kanban/
+
 Setup
 -----
 
